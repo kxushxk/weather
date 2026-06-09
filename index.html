@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Weather Carousel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Weather</h1>
+
+    <div class="carousel-container">
+        <buttons class="nav-btn prev-btn" id="prevBtn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </buttons>
+
+        <div class="dashboard" id="carousel">
+            
+            <div class="weather-card cloudy">
+                <div class="card-header">
+                    <i class="fa-solid fa-bars menu-icon"></i>
+                    <span class="date">Mar 26 2021</span>
+                    <i class="fa-solid fa-circle-plus add-icon"></i>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon"><i class="fa-solid fa-cloud"></i></div>
+                    <div class="temp">14°C</div>
+                </div>
+                <div class="location-box">
+                    <div class="city">Tamil nadu</div>
+                    <div class="condition">Cloudy</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-value">8km/h</span><span class="stat-label">Wind</span></div>
+                    <div class="stat-item"><span class="stat-value">60%</span><span class="stat-label">Humidity</span></div>
+                    <div class="stat-item"><span class="stat-value">50%</span><span class="stat-label">Rain</span></div>
+                </div>
+            </div>
+
+            <div class="weather-card sunny">
+                <div class="card-header">
+                    <i class="fa-solid fa-bars menu-icon"></i>
+                    <span class="date">Mar 26 2021</span>
+                    <i class="fa-solid fa-circle-plus add-icon"></i>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon"><i class="fa-solid fa-sun"></i></div>
+                    <div class="temp">16°C</div>
+                </div>
+                <div class="location-box">
+                    <div class="city">Kerala</div>
+                    <div class="condition">Sunny</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-value">3km/h</span><span class="stat-label">Wind</span></div>
+                    <div class="stat-item"><span class="stat-value">80%</span><span class="stat-label">Humidity</span></div>
+                    <div class="stat-item"><span class="stat-value">25%</span><span class="stat-label">Rain</span></div>
+                </div>
+            </div>
+
+            <div class="weather-card rainy">
+                <div class="card-header">
+                    <i class="fa-solid fa-bars menu-icon"></i>
+                    <span class="date">Mar 26 2021</span>
+                    <i class="fa-solid fa-circle-plus add-icon"></i>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div>
+                    <div class="temp">10°C</div>
+                </div>
+                <div class="location-box">
+                    <div class="city">Karnataka</div>
+                    <div class="condition">Rainy</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-value">9km/h</span><span class="stat-label">Wind</span></div>
+                    <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label">Humidity</span></div>
+                    <div class="stat-item"><span class="stat-value">80%</span><span class="stat-label">Rain</span></div>
+                </div>
+            </div>
+
+            <div class="weather-card thunder">
+                <div class="card-header">
+                    <i class="fa-solid fa-bars menu-icon"></i>
+                    <span class="date">Mar 26 2021</span>
+                    <i class="fa-solid fa-circle-plus add-icon"></i>
+                </div>
+                <div class="weather-main">
+                    <div class="weather-icon"><i class="fa-solid fa-cloud-bolt"></i></div>
+                    <div class="temp">21°C</div>
+                </div>
+                <div class="location-box">
+                    <div class="city">Maharashtra</div>
+                    <div class="condition">Thunder</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item"><span class="stat-value">7km/h</span><span class="stat-label">Wind</span></div>
+                    <div class="stat-item"><span class="stat-value">90%</span><span class="stat-label">Humidity</span></div>
+                    <div class="stat-item"><span class="stat-value">100%</span><span class="stat-label">Rain</span></div>
+                </div>
+            </div>
+
+        </div>
+
+        <buttons class="nav-btn next-btn" id="nextBtn">
+            <i class="fa-solid fa-chevron-right"></i>
+        </buttons>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #091535 0%, #0c1122 100%);
+    --card-cloudy: linear-gradient(180deg, #e0e0e0 0%, #b8b8b8 100%);
+    --card-sunny: linear-gradient(180deg, #ffb347 0%, #ffcc67 100%);
+    --card-rainy: linear-gradient(180deg, #4d7cff 0%, #2b56ff 100%);
+    --card-thunder: linear-gradient(180deg, #1f232c 0%, #11141a 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 2rem;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: #ffffff;
+}
+
+/* Carousel Main Stage */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1000px;
+    position: relative;
+    height: 500px;
+}
+
+/* Card Presentation Deck */
+.dashboard {
+    position: relative;
+    width: 320px;
+    height: 440px;
+    perspective: 1000px; /* Essential for 3D depth */
+    transform-style: preserve-3d;
+}
+
+/* Base styling for ALL cards */
+.weather-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    padding: 2.2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* Smooth 3D animation properties */
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.6s ease, 
+                filter 0.6s ease,
+                box-shadow 0.4s ease;
+}
+
+/* --- The 3D Engine Math Classes --- */
+
+/* Center Focused Active Card */
+.weather-card.active {
+    transform: translate3d(0, 0, 0) rotateY(0deg);
+    opacity: 1;
+    filter: blur(0px);
+    z-index: 10;
+    pointer-events: auto;
+}
+
+/* Left Card (Staying smaller & less transparent) */
+.weather-card.prev {
+    transform: translate3d(-180px, 0, -150px) rotateY(25deg);
+    opacity: 0.45;
+    filter: blur(1px) scale(0.9);
+    z-index: 5;
+}
+
+/* Right Card (Staying smaller & less transparent) */
+.weather-card.next {
+    transform: translate3d(180px, 0, -150px) rotateY(-25deg);
+    opacity: 0.45;
+    filter: blur(1px) scale(0.9);
+    z-index: 5;
+}
+
+/* Remaining cards hiding cleanly out of view */
+.weather-card.hidden {
+    transform: translate3d(0, 0, -300px) scale(0.7);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Active Hover micro-lift effect */
+.weather-card.active:hover {
+    transform: translate3d(0, -10px, 20px) rotateY(0deg);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Themes text customization matching background brightness constraints */
+.cloudy { background: var(--card-cloudy); color: #474747; }
+.sunny { background: var(--card-sunny); color: #ffffff; }
+.rainy { background: var(--card-rainy); color: #ffffff; }
+.thunder { background: var(--card-thunder); color: #ffffff; }
+
+.cloudy .card-header, .cloudy .condition, .cloudy .stat-label { color: #6e6e6e; }
+.cloudy .city, .cloudy .temp, .cloudy .stat-value { color: #2b2b2b; }
+
+/* Sub-card element internal designs */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.weather-main {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.weather-icon {
+    font-size: 3.8rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.15));
+}
+
+.temp {
+    font-size: 4.2rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.location-box {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.city { font-size: 1.7rem; font-weight: 600; }
+.condition { font-size: 0.95rem; opacity: 0.8; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.cloudy .stats-grid { border-top: 1px solid rgba(0, 0, 0, 0.08); }
+
+.stat-item { display: flex; flex-direction: column; align-items: flex-start; }
+.stat-value { font-size: 1rem; font-weight: 600; }
+.stat-label { font-size: 0.7rem; opacity: 0.7; }
+
+/* Arrow Button Controls */
+.nav-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    position: absolute;
+    z-index: 100;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+.prev-btn { left: -80px; }
+.next-btn { right: -80px; }
+
+/* Responsive adjustments */
+@media (max-width: 650px) {
+    .prev-btn { left: 10px; top: 102%; }
+    .next-btn { right: 10px; top: 102%; }
+    .weather-card.prev { transform: translate3d(-80px, 0, -120px) rotateY(20deg); }
+    .weather-card.next { transform: translate3d(80px, 0, -120px) rotateY(-20deg); }
+}
